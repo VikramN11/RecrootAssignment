@@ -2,16 +2,32 @@ const express = require("express");
 const { UserModel } = require("../model/User.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const multer = require("multer");
 
 const userRouter = express.Router();
 
-userRouter.post("/register", async (req, res)=>{
-    const {name, email, password} = req.body;
+// Multer storage 
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'uploads/');
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '-' + file.originalname);
+    },
+  });
+
+// Multer upload 
+const upload = multer({ storage: storage });
+
+
+userRouter.post("/register", upload.single('profileImage'), async (req, res)=>{
     try {
+        const {name, email, password} = req.body;
+        const profileImage = req.file.filename;
         bcrypt.hash(password, 5, async(err, hash) =>{
             if(err) res.send({"error" : err.message});
             else{
-                const user = new UserModel({name, email, password : hash});
+                const user = new UserModel({name, email, password : hash, profileImage});
                 await user.save();
                 res.send({"msg" : "New User has been registered"});
             }
