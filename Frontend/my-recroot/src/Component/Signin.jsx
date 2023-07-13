@@ -8,30 +8,26 @@ import style from "../Style/Signin.module.css";
     const [password, setPassword] = useState("");
     const [errMessage, setErrMessage] = useState("");
 
-    const handleSubmit = async (e)=>{
+    const handleSubmit = (e)=>{
       e.preventDefault();
 
       if (!email || !password) {
        setErrMessage('Please fill in all fields.');
      } 
      else {
-     try{
        const payload = {email, password}
  
-       await axios.post(`http://localhost:8080/users/register`, payload).then(res=>{
+       axios.post(`http://localhost:8080/users/login`, payload).then(res=>{
          console.log(res.data);
+         localStorage.setItem("token", res.data.token);
          setEmail('');
          setPassword('');
          setErrMessage('');
         }).catch(err=>{
-         console.log(err)});
-     }
-     catch (error) {
-         console.log(error);
-         setErrMessage('Login failed. Please try again later.');
-       }
-   }
- }
+          console.log(err);
+        })
+      }
+    }
 
     return (
       <form className={style.signinContainer} onSubmit={handleSubmit}>
