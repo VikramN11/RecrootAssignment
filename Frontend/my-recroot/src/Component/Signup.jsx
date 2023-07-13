@@ -9,7 +9,12 @@
 
     const handleSubmit = (e)=>{
        e.preventDefault();
-       let payload = {name, email, password, profile};
+       const payload = new FormData();
+      payload.append('name', name);
+      payload.append('email', email);
+      payload.append('password', password);
+      payload.append('profileImage', profile);
+
        axios.post(`http://localhost:8080/users/register`, payload).then(res=>{
         console.log(res);
        }).catch(err=>{
@@ -18,7 +23,7 @@
   
     
     return (
-      <form method='post' encType="multipart/form-data" onSubmit={handleSubmit}>
+      <form action='/users/register' method='post' encType="multipart/form-data" onSubmit={handleSubmit}>
       <input
         type="text"
         name="name"
@@ -48,11 +53,11 @@
         name="profileImage"
         onChange={(e)=>{
           console.log(e.target.files[0]);
-          setProfile(e.target.files[0].name)
+          setProfile(e.target.files[0])
         }}
         required
       /><br />
-      <button type="submit">Sign Up</button>
+      <input type="submit" value="Sign Up" />
     </form>
     );
   }
