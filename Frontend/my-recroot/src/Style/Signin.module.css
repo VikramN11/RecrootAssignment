@@ -1,0 +1,23 @@
+.signinContainer{
+    width: 35vw;
+    height: 50vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    background-color: #cfe0db;
+}
+
+.signinContainer>input{
+    width: 20vw;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.signinContainer>input[type="submit"]{
+     background-color: #ff2f2f;
+     color: white;
+     border: none;
+}

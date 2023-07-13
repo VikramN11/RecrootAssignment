@@ -1,0 +1,17 @@
+.navContainer{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 2vh 0 2vh 0;
+    border: 1px soild black;
+    box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+}
+
+.navContainer>h1{
+    font-size: 1.5em;
+    color: #ff2f2f;
+}
+
+.navContainer>img{
+    border-radius: 50%;
+}
