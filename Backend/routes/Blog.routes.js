@@ -37,7 +37,19 @@ blogRouter.post("/create", async (req, res)=>{
     }
 })
 
-blogRouter.delete("/delete:id", async (req, res)=>{
+blogRouter.patch("/update/:id", async(req, res)=>{
+    const payload = req.body;
+    const id = req.params.id;
+    try {
+        await BlogModel.findByIdAndUpdate({"_id:id", payload});
+        res.send("Updated the Blog");
+    } catch (err) {
+        console.log(err.message);
+        res.send({"msg":"Something went wrong"});
+    }
+})
+
+blogRouter.delete("/delete/:id", async (req, res)=>{
     const blogId = req.params.id;
     await BlogModel.findByIdAndDelete({_id:blogId});
     res.send(`Blog of id : ${blogId} has been deleted`);

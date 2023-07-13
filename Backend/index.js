@@ -4,6 +4,7 @@ const { userRouter } = require("./routes/User.routes");
 const { blogRouter } = require("./routes/Blog.routes");
 const { authenticate } = require("./middleware/authenticate.middleware");
 const cors = require("cors");
+require('dotenv').config();
 
 const app = express();
 
@@ -20,12 +21,12 @@ app.use(authenticate);
 
 app.use("/blogs", blogRouter);
 
-app.listen(8080, async ()=>{
+app.listen(process.env.port, async ()=>{
     try {
         await connection;
         console.log("Connected to DB");
     } catch (err) {
-        console.log("err.message");
+        console.log(err.message);
     }
     console.log("Server is running at port 8080");
 })
