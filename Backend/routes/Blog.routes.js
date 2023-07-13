@@ -40,19 +40,43 @@ blogRouter.post("/create", async (req, res)=>{
 blogRouter.patch("/update/:id", async(req, res)=>{
     const payload = req.body;
     const id = req.params.id;
+    const blog = await BlogModel.findOne({"_id":id});
+    const userID_of_blog = blog.user;
+    const userID_request = req.body.user;
     try {
-        await BlogModel.findByIdAndUpdate({"_id:id", payload});
-        res.send("Updated the Blog");
-    } catch (err) {
+        if(userID_request !== userID_of_blog){
+            res.send({"msg":"You are not Authorized"});
+        }
+        else{
+            await BlogModel.findByIdAndUpdate({"_id":id, payload});
+            res.send("Updated the Blog");
+        }
+    } 
+    catch(err){
         console.log(err.message);
         res.send({"msg":"Something went wrong"});
     }
 })
 
 blogRouter.delete("/delete/:id", async (req, res)=>{
-    const blogId = req.params.id;
-    await BlogModel.findByIdAndDelete({_id:blogId});
-    res.send(`Blog of id : ${blogId} has been deleted`);
+    const payload = req.body;
+    const id = req.params.id;
+    const blog = await BlogModel.findOne({"_id":id});
+    const userID_of_blog = blog.user;
+    const userID_request = req.body.user;
+    try {
+        if(userID_request !== userID_of_blog){
+            res.send({"msg":"You are not Authorized"});
+        }
+        else{
+            await BlogModel.findByIdAndDelete({"_id":id});
+            res.send("Deleted the Blog");
+        }
+    } 
+    catch(err){
+        console.log(err.message);
+        res.send({"msg":"Something went wrong"});
+    }
 })
 
 module.exports = { blogRouter };

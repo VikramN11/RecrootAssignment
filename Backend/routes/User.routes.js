@@ -53,8 +53,8 @@ userRouter.post("/login", async (req,res)=>{
                     const token = jwt.sign({userID : user[0]._id}, "recroot")
                     res.send({"msg":"User logged in", "token":token});
                 }
-                else{
-                    res.send({"msg":"Something went wrong"});
+                else if(err){
+                    res.send({"msg":"Something went wrong", "err":err.message});
                 }
             });
             
