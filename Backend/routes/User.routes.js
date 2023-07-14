@@ -22,18 +22,29 @@ const storage = multer.diskStorage({
 // Multer upload 
 const upload = multer({ storage: storage });
 
+userRouter.get("/", async (req, res)=>{
+    try {
+        const users = await UserModel.find();
+        res.send({"user":users})
+    } catch (err) {
+        res.send({"msg":"Something went wrong"})
+    }
+})
+
 
 userRouter.post("/register", upload.single('profileImage'), async (req, res)=>{
     try {
         const {name, email, password, profile} = req.body;
         console.log(req.body);
         let profileImage = req.file.filename;
+        let filepath = req.file.path;
+        console.log(filepath);
         bcrypt.hash(password, 5, async(err, hash) =>{
             if(err) res.send({"error" : err.message});
             else{
                 const user = new UserModel({name, email, password : hash, profile:profileImage});
                 await user.save();
-                res.send({"msg" : "New User has been registered", "user":user});
+                res.send({"msg" : "New User has been registered", "user":user, "filepath":filepath});
             }
         });
     } catch (error) {
@@ -51,7 +62,7 @@ userRouter.post("/login", async (req,res)=>{
                 // result == true
                 if(result){
                     const token = jwt.sign({userID : user[0]._id}, "recroot")
-                    res.send({"msg":"User logged in", "token":token});
+                    res.send({"msg":"User logged in", "token":token, "userId":user[0]._id});
                 }
                 else if(err){
                     res.send({"msg":"Something went wrong", "err":err.message});
