@@ -1,0 +1,28 @@
+.createBlogContainer{
+    width: 35vw;
+    height: 50vh;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2vw;
+    background-color: #cfe0db;
+}
+
+.createBlogContainer>input{
+    width: 20vw;
+    height: 5vh;
+    border-radius: 5px;
+}
+
+.createBlogContainer>input[type="submit"]{
+     background-color: #ff2f2f;
+     color: white;
+     border: none;
+     cursor: pointer;
+}
+
+.createBlogContainer>a{
+    color: blue;
+}

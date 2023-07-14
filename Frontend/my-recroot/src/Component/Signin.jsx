@@ -1,9 +1,11 @@
 import { useState } from "react";
 import axios from "axios";
 import style from "../Style/Signin.module.css";
+import { useNavigate } from "react-router-dom";
 
   
   const Signin = () =>{
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errMessage, setErrMessage] = useState("");
@@ -19,7 +21,9 @@ import style from "../Style/Signin.module.css";
  
        axios.post(`http://localhost:8080/users/login`, payload).then(res=>{
          console.log(res.data);
+         localStorage.clear();
          localStorage.setItem("token", res.data.token);
+         navigate("/");
          setEmail('');
          setPassword('');
          setErrMessage('');

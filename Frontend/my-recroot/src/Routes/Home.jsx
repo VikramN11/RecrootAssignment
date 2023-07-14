@@ -8,7 +8,7 @@ const Home = () => {
   return (
     <div>
         {/* <Signin/> */}
-        <Blogs/>
+        {localStorage.getItem("token") ? <CreateBlog/> : <Signup/>}
         {/* <CreateBlog/> */}
     </div>
   )

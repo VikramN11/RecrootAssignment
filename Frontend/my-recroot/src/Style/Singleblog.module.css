@@ -1,0 +1,30 @@
+.singleblogContainer{
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.singleblogContainer>h1{
+    font-size: larger;
+}
+
+.singleblogContainer>div{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 10px;
+}
+
+.singleblogContainer>div>button{
+    font-size: large;
+    background-color: #f50157;
+    color: white;
+    border-radius: 5px;
+    padding: 4px;
+}
+
+.singleblogContainer>div>p{
+    color: gray;
+}

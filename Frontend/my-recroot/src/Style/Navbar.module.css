@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-around;
     align-items: center;
+    gap: 70%;
     padding: 2vh 0 2vh 0;
     border: 1px soild black;
     box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
@@ -12,6 +13,15 @@
     color: #ff2f2f;
 }
 
-.navContainer>img{
+.navContainer>div{
+    width: 4vw;   
+    height: 4vh;  
+    overflow: hidden;
+}
+  
+.navContainer>div>a>img{
+    width: 100%;   
+    height: 100%;  
+    object-fit: cover; 
     border-radius: 50%;
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
-import style from "../Style/Signin.module.css";
+import style from "../Style/CreateBlog.module.css";
+import {Link} from "react-router-dom";
 
   
   const CreateBlog = () =>{
@@ -19,6 +20,7 @@ import style from "../Style/Signin.module.css";
         }
        }).then(res=>{
          console.log(res.data);
+         alert("Blog has been created")
          setTitle('');
          setBody('');
         }).catch(err=>{
@@ -28,6 +30,7 @@ import style from "../Style/Signin.module.css";
 
     return (
       <form className={style.createBlogContainer} onSubmit={handleSubmit}>
+        <h1 style={{fontSize:"larger", fontWeight:"700"}}>Create Blog</h1>
       <input
         type="text"
         name="title"
@@ -43,6 +46,8 @@ import style from "../Style/Signin.module.css";
         onChange={e=>setBody(e.target.value)}
       />
       <input type="submit" value="Post" />
+
+      <Link to="/blogs">See all Blogs</Link>
     </form>
     );
   }

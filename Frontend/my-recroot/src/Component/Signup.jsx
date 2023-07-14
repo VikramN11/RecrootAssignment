@@ -1,8 +1,10 @@
   import { useState } from 'react';
   import axios from "axios";
   import style from "../Style/Signup.module.css";
+  import { useNavigate } from 'react-router-dom';
   
   const Signup = ()=>{
+    const navigate = useNavigate();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -29,6 +31,8 @@
   
         await axios.post(`http://localhost:8080/users/register`, payload).then(res=>{
           console.log(res.data);
+          alert("Registration Successful");
+          navigate("/signin")
           setName('');
           setEmail('');
           setPassword('');
