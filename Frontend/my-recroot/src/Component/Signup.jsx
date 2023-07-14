@@ -1,7 +1,7 @@
   import { useState } from 'react';
   import axios from "axios";
   import style from "../Style/Signup.module.css";
-  import { useNavigate } from 'react-router-dom';
+  import { Link, useNavigate } from 'react-router-dom';
   
   const Signup = ()=>{
     const navigate = useNavigate();
@@ -32,6 +32,8 @@
         await axios.post(`http://localhost:8080/users/register`, payload).then(res=>{
           console.log(res.data);
           alert("Registration Successful");
+          localStorage.clear();
+          localStorage.setItem("filepath", res.data.filepath)
           navigate("/signin")
           setName('');
           setEmail('');
@@ -55,6 +57,7 @@
     
     return (
       <form className={style.signupContainer} action='/users/register' method='post' encType="multipart/form-data" onSubmit={handleSubmit}>
+      <h1 style={{fontSize:"larger", fontWeight:"700"}}>Sign Up</h1>
       <input
         type="text"
         name="name"
@@ -86,6 +89,7 @@
       /><br />
       {errMessage && <p>{errMessage}</p>}
       <input type="submit" value="Sign Up" />
+      <p>Already logged in? <Link style={{color:"blue"}} to={"/signin"}>Login</Link></p>
     </form>
     );
   }

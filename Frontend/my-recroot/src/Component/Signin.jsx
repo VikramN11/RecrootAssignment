@@ -21,7 +21,7 @@ import { useNavigate } from "react-router-dom";
  
        axios.post(`http://localhost:8080/users/login`, payload).then(res=>{
          console.log(res.data);
-         localStorage.clear();
+         alert("Logged In Successfully");
          localStorage.setItem("token", res.data.token);
          navigate("/");
          setEmail('');
@@ -35,6 +35,7 @@ import { useNavigate } from "react-router-dom";
 
     return (
       <form className={style.signinContainer} onSubmit={handleSubmit}>
+        <h1 style={{fontSize:"larger", fontWeight:"700"}}>Sign In</h1>
       <input
         type="email"
         name="email"
