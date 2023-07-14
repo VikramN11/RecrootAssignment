@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import style from "../Style/Signin.module.css";
 import { useNavigate } from "react-router-dom";
+import {Link} from "react-router-dom";
 
   
   const Signin = () =>{
@@ -19,7 +20,7 @@ import { useNavigate } from "react-router-dom";
      else {
        const payload = {email, password}
  
-       axios.post(`http://localhost:8080/users/login`, payload).then(res=>{
+       axios.post(`https://wild-ruby-calf-sari.cyclic.app/users/login`, payload).then(res=>{
          console.log(res.data);
          alert("Logged In Successfully");
          localStorage.setItem("token", res.data.token);
@@ -52,6 +53,7 @@ import { useNavigate } from "react-router-dom";
       />
       {errMessage && <p>{errMessage}</p>}
       <input type="submit" value="Sign In" />
+      <p>New User? <Link style={{color:"blue"}} to={"/signup"}>SignUp</Link></p>
     </form>
     );
   }

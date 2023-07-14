@@ -13,7 +13,7 @@ import {Link} from "react-router-dom";
 
        const payload = {title, body}
  
-       axios.post(`http://localhost:8080/blogs/create`, payload, {
+       axios.post(`https://wild-ruby-calf-sari.cyclic.app/blogs/create`, payload, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': localStorage.getItem("token"),

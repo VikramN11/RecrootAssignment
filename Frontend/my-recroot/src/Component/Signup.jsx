@@ -29,7 +29,7 @@
         payload.append('password', password);
         payload.append('profileImage', profile);
   
-        await axios.post(`http://localhost:8080/users/register`, payload).then(res=>{
+        await axios.post(`https://wild-ruby-calf-sari.cyclic.app/users/register`, payload).then(res=>{
           console.log(res.data);
           alert("Registration Successful");
           localStorage.clear();

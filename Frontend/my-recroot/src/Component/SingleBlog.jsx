@@ -11,7 +11,7 @@ const SingleBlog = ({_id, title, body,date}) => {
     }
 
     const handleDelete = (id)=>{
-        axios.delete(`http://localhost:8080/blogs/delete/${id}`,{
+        axios.delete(`https://wild-ruby-calf-sari.cyclic.app/blogs/delete/${id}`,{
             headers: {
                 'Authorization': localStorage.getItem("token"),
             }

@@ -13,7 +13,7 @@ const Bloginfo = () => {
       },[]);
 
       const getData = ()=>{
-        axios.get(`http://localhost:8080/blogs?id=${id}`,{
+        axios.get(`https://wild-ruby-calf-sari.cyclic.app/blogs?id=${id}`,{
             headers: {
                 'Authorization': localStorage.getItem("token"),
             }

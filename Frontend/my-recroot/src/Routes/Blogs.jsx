@@ -11,7 +11,7 @@ const Blogs = () => {
       },[]);
 
       const getData = ()=>{
-        axios.get("http://localhost:8080/blogs",{
+        axios.get("https://wild-ruby-calf-sari.cyclic.app/blogs",{
             headers: {
                 'Authorization': localStorage.getItem("token"),
             }
