@@ -11,8 +11,9 @@ blogRouter.get("/", async (req, res)=>{
         jwt.verify(token, 'recroot', async(err, decoded)=>{
             if(decoded){
                 let userId = decoded.userID;
-                let blogs = await BlogModel.find({user: userId});
-                res.send(blogs);
+                let blogs = await BlogModel.find();
+                let userBlogs = await BlogModel.find({user: userId});
+                res.send({"blogs":blogs, "userBlogs":userBlogs});
             }
             else{
                 res.send({"msg":err.message});
