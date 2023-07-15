@@ -27,7 +27,7 @@
         payload.append('name', name);
         payload.append('email', email);
         payload.append('password', password);
-        payload.append('profileImage', profile);
+        payload.append('profile', profile);
   
         await axios.post(`https://wild-ruby-calf-sari.cyclic.app/users/register`, payload).then(res=>{
           console.log(res.data);
@@ -81,7 +81,7 @@
       />
       <input
         type="file"
-        name="profileImage"
+        name="profile"
         onChange={(e)=>{
           console.log(e.target.files[0]);
           setProfile(e.target.files[0])
