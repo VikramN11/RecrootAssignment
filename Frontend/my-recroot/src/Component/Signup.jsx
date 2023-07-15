@@ -56,7 +56,7 @@
   }
     
     return (
-      <form className={style.signupContainer} action='/users/register' method='post' encType="multipart/form-data" onSubmit={handleSubmit}>
+      <form className={style.signupContainer} method='post' encType="multipart/form-data" onSubmit={handleSubmit}>
       <h1 style={{fontSize:"larger", fontWeight:"700"}}>Sign Up</h1>
       <input
         type="text"
