@@ -2,6 +2,7 @@
   "name": "my-recroot",
   "version": "0.1.0",
   "private": true,
+  "proxy":"https://64b10fe935ac18275ab23f1d--subtle-kangaroo-08802a.netlify.app",
   "dependencies": {
     "@chakra-ui/icons": "^2.0.19",
     "@chakra-ui/react": "^2.7.1",
